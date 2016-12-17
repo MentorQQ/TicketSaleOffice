@@ -1,0 +1,35 @@
+EVENT SEARCH:
+Select  a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s where 
+e.date > $firstDay and e.date < $lastDay;
+
+EVENT SEARCH BY TYPE
+Select a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s where
+e.activityID=a.ID and e.showroomID=s.ID and a.type = $activityType;
+
+EVENT BY CITY
+Select  a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s where
+e.showroomID=s.ID and e.activityID = a.ID and s.city=$city;
+
+EVENT BY SHOWROOM
+Select  a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s where
+e.showroomID=s.ID and e.activityID = a.ID and s.showroomName = $showroomName;
+
+EVENT SEARCH CUSTOM
+Select  a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s where
+e.showroomID=s.ID and e.activityID = a.ID and s.showroomName = $showroomName and s.city=$city and a.type = $activityType and e.date > $firstDay and e.date < $lastDay;
+
+ADD RESERVATION
+Insert Into reservation 
+Values ($reservationID, $userID, $eventID, $ticketNumber);
+
+CANCEL RESERVATION
+Delete from reservation
+Where reservation.ID = $reservationID;
+
+USER INFORMATION
+Select a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s, user as s, reservation as r where 
+e.showroomID=s.ID and e.activityID = a.ID and e.ID=r.eventID and r.userID = u.ID and u.ID = $userID
+
+
+
+
