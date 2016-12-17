@@ -1,6 +1,6 @@
 EVENT SEARCH:
 Select  a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s where 
-e.date > $firstDay and e.date < $lastDay;
+e.showroomID=s.ID and e.activityID = a.ID and e.date > $firstDay and e.date < $lastDay;
 
 EVENT SEARCH BY TYPE
 Select a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s where
