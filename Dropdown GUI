@@ -1,0 +1,29 @@
+# Event Search By Type
+<?php
+
+$conn = new mysqli('localhost', 'username', 'password', 'database') 
+or die ('Cannot connect to db');
+
+    $result = $conn->query("select a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s where
+e.activityID = a.ID and e.showroomID = s.ID and a.type = " + $activityType);
+    
+    echo "<html>";
+    echo "<body>";
+    echo "<select name='id'>";
+
+    while ($row = $result->fetch_assoc()) {
+
+                  unset($activityName, $type, $date, $city, $showroomName);
+                  $activityName = $row['activityName'];
+                  $type = $row['type']; 
+                  $date = $row['date'];
+                  $city = $row['city'];
+                  $showroomName = $row['showroomName'];
+                  echo '<option value="'.$id.'">'.$name.'</option>';
+                 
+}
+
+    echo "</select>";
+    echo "</body>";
+    echo "</html>";
+?>
