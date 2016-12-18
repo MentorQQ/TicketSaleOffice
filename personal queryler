@@ -1,0 +1,52 @@
+<php
+
+$sql = "INSERT INTO reservation (ID, userID, eventID, ticketNumber)
+VALUES (mysql_insert_id(), $userID', $eventID, $ticketNumber)";
+
+if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+
+?>
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+<php
+
+$sql = "DELETE FROM reservation WHERE reservation.ID = " + $reservationID;
+
+if (mysqli_query($conn, $sql)) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+
+?>
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+<php
+
+$sql = "UPDATE reservation SET ticketNumber = " + $ticketnumber + " WHERE reservation.ID = " + $reservationID;
+
+if (mysqli_query($conn, $sql)) {
+    echo "Record updated successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+
+?>
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+<php
+
+$sql = "Select a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s, user as s, reservation as r where 
+e.showroomID=s.ID and e.activityID = a.ID and e.ID=r.eventID and r.userID = u.ID and u.ID = " + $userID;
+
+if (mysqli_query($conn, $sql)) {
+    echo "Record updated successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+
+?>
