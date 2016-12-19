@@ -1,14 +1,12 @@
 <?php
  ob_start();
  session_start();
- if( isset($_SESSION['user'])!="" ){
-  header("Location: home.php");
- }
+
  include_once 'dbconnect.php';
 
  $error = false;
 
- if ( isset($_POST['btn-signup']) ) {
+ if ( isset($_POST['signup']) ) {
   
   // clean user inputs to prevent sql injections
   $name = trim($_POST['name']);
@@ -23,7 +21,7 @@
   $pass = strip_tags($pass);
   $pass = htmlspecialchars($pass);
   
-  // basic name validation
+
   if (empty($name)) {
    $error = true;
    $nameError = "Please enter your full name.";
@@ -35,7 +33,7 @@
    $nameError = "Name must contain alphabets and space.";
   }
   
-  //basic email validation
+
   if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
    $error = true;
    $emailError = "Please enter valid email address.";
@@ -49,7 +47,7 @@
     $emailError = "Provided Email is already in use.";
    }
   }
-  // password validation
+
   if (empty($pass)){
    $error = true;
    $passError = "Please enter password.";
@@ -58,13 +56,13 @@
    $passError = "Password must have atleast 6 characters.";
   }
   
-  // password encrypt using SHA256();
+
   $password = hash('sha256', $pass);
   
-  // if there's no error, continue to signup
+
   if( !$error ) {
    
-   $query = "INSERT INTO user(ID, username ,password) VALUES(mysql_insert_id(), '$name','$password')";
+   $query = "INSERT INTO user(username , email, password) VALUES('$name', '$email','$password')";
    $res = mysql_query($query);
     
    if ($res) {
