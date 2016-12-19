@@ -14,7 +14,7 @@ if (mysqli_query($conn, $sql)) {
 -------------------------------------------------------------------------------------------------------------------------------------------
 <php
 
-$sql = "DELETE FROM reservation WHERE reservation.ID = " '$reservationID';
+$sql = "DELETE FROM reservation WHERE reservation.ID = '$reservationID'"";
 
 if (mysqli_query($conn, $sql)) {
     echo "Record deleted successfully";
@@ -41,7 +41,7 @@ if (mysqli_query($conn, $sql)) {
 <php
 
 $sql = "Select a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s, user as s, reservation as r where 
-e.showroomID=s.ID and e.activityID = a.ID and e.ID=r.eventID and r.userID = u.ID and u.ID = " + $userID;
+e.showroomID=s.ID and e.activityID = a.ID and e.ID=r.eventID and r.userID = u.ID and u.ID = '$userID'";
 
 if (mysqli_query($conn, $sql)) {
     echo "Record updated successfully";
