@@ -34,18 +34,18 @@ else{
   $eventType = "";
 }
 
-if(isset($_POST['begin_date'] && $_POST[2end_date'])){
+if(isset($_POST['begin_date'] && $_POST['end_date'])){
   $begin_date = $_POST['begin_date'];
   $end_date = $_POST['end_date'];
-  $date = "e.date => " + $begin_date + " and e.date =< " + $
+  $date = "e.date => '$begin_date' and e.date =< '$end_date'";
 }
 else if(isset($_POST['begin_date'])){
   $begin_date = $_POST['begin_date'];
-  $date = "e.date => " + $begin_date;
+  $date = "e.date => '$begin_date'";
 }
 else if(isset($_POST['end_date'])){
   $end_date = $_POST['end_date'];
-  $date = "e.date =< " + $end_date;
+  $date = "e.date =< '$end_date'";
 }
 else{
   $date = "";
@@ -53,7 +53,7 @@ else{
 
 if(isset($_POST['city'])){
   $eventCity = $_POST['city'];
-  $city = " s.city = " + $eventCity;
+  $city = " s.city = '$eventCity'";
 }
 else{
   $city = "";
@@ -61,7 +61,7 @@ else{
 
 if(isset($_POST['showroom'])){
   $eventShowroom = $_POST['showroom'];
-  $showroom = " s.showroom = " + $eventShowroom;
+  $showroom = " s.showroom = '$eventShowroom'";
 }
 else{
   $showroom = "";
