@@ -1,7 +1,7 @@
 <php
 
-$sql = "INSERT INTO reservation (ID, userID, eventID, ticketNumber)
-VALUES (mysql_insert_id(), $userID', $eventID, $ticketNumber)";
+$sql = "INSERT INTO reservation (userID, eventID, ticketNumber)
+VALUES ('$userID', '$eventID', '$ticketNumber')";
 
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
@@ -14,7 +14,7 @@ if (mysqli_query($conn, $sql)) {
 -------------------------------------------------------------------------------------------------------------------------------------------
 <php
 
-$sql = "DELETE FROM reservation WHERE reservation.ID = " + $reservationID;
+$sql = "DELETE FROM reservation WHERE reservation.ID = " '$reservationID';
 
 if (mysqli_query($conn, $sql)) {
     echo "Record deleted successfully";
@@ -27,7 +27,7 @@ if (mysqli_query($conn, $sql)) {
 -------------------------------------------------------------------------------------------------------------------------------------------
 <php
 
-$sql = "UPDATE reservation SET ticketNumber = " + $ticketnumber + " WHERE reservation.ID = " + $reservationID;
+$sql = "UPDATE reservation SET ticketNumber = '$ticketnumber' WHERE reservation.ID = '$reservationID' ";
 
 if (mysqli_query($conn, $sql)) {
     echo "Record updated successfully";
