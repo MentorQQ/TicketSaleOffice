@@ -31,7 +31,7 @@ if(isset($_POST['type'])){
   $eventType = $_POST['type'];
 }
 else{
-  $eventType = "";
+  $eventType = "1";
 }
 
 if(isset($_POST['begin_date'] && $_POST['end_date'])){
@@ -48,7 +48,7 @@ else if(isset($_POST['end_date'])){
   $date = "e.date =< '$end_date'";
 }
 else{
-  $date = "";
+  $date = "1";
 }
 
 if(isset($_POST['city'])){
@@ -56,7 +56,7 @@ if(isset($_POST['city'])){
   $city = " s.city = '$eventCity'";
 }
 else{
-  $city = "";
+  $city = "1";
 }
 
 if(isset($_POST['showroom'])){
@@ -64,7 +64,7 @@ if(isset($_POST['showroom'])){
   $showroom = " s.showroom = '$eventShowroom'";
 }
 else{
-  $showroom = "";
+  $showroom = "1";
 }
 
 if(isset($_POST['submit'])){
