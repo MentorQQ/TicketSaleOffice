@@ -25,13 +25,16 @@ if(isset($_POST['submit'])) {
     ---------------------------------------------------------------------------------------------------------------------------------------
 <?php
 $clause = " WHERE ";//Initial clause
-$sql="SELECT a.activityName, a.type, e.date, s.city, s.showroomName from event as e , activity as a, showroom as s ";//Query stub
+$sql="SELECT a.activityName, a.type, e.date, s.city FROM ticketmanager.event as e 
+join ticketmanager.showroom as s on e.showroomID = s.ID
+join activity as a on a.ID = e.activityID";
 
 if(isset($_POST['type'])){
   $eventType = $_POST['type'];
+  $type = "a.type = '$eventType'";
 }
 else{
-  $eventType = "1";
+  $eventType = "a.type = a.type";
 }
 
 if(isset($_POST['begin_date'] && $_POST['end_date'])){
@@ -48,7 +51,7 @@ else if(isset($_POST['end_date'])){
   $date = "e.date =< '$end_date'";
 }
 else{
-  $date = "1";
+  $date = "e.date = e.date";
 }
 
 if(isset($_POST['city'])){
@@ -56,19 +59,19 @@ if(isset($_POST['city'])){
   $city = " s.city = '$eventCity'";
 }
 else{
-  $city = "1";
+  $city = "s.city = s.city";
 }
 
 if(isset($_POST['showroom'])){
   $eventShowroom = $_POST['showroom'];
-  $showroom = " s.showroom = '$eventShowroom'";
+  $showroomName = " s.showroomName = '$eventShowroom'";
 }
 else{
-  $showroom = "1";
+  $showroom = "s.showroomName = s.showroomName";
 }
 
 if(isset($_POST['submit'])){
-    $query = mysql_query('%".$sql."%' '%".$clause."%' ( `e.date` LIKE " + '%".$date."%" ) AND ( `s.city` LIKE '%".$city."%' ) AND (`a.type` LIKE '%".$eventType."%') AND ( `s.showroom` LIKE '%".$showroom."%'));
+    $query = mysql_query('%".$sql."%' '%".$clause."%' ( `e.date` LIKE " + '%".$date."%" ) AND ( `s.city` LIKE '%".$city."%' ) AND (`a.type` LIKE '%".$type."%') AND ( `s.showroom` LIKE '%".$showroomName."%'));
 echo $query;//Remove after testing
 }
 ?>
