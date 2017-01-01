@@ -1,28 +1,3 @@
-if(isset($_POST['submit'])) {
-    // define the list of fields
-    $fields = array('activityName', 'type', 'date', 'city', 'showroomName');
-    $conditions = array();
-
-    // loop through the defined fields
-    foreach($fields as $field){
-        // if the field is set and not empty
-        if(isset($_POST[$field]) && $_POST[$field] != '') {
-            // create a new condition while escaping the value inputed by the user (SQL Injection)
-            $conditions[] = "`$field` LIKE '%" . mysql_real_escape_string($_POST[$field]) . "%'";
-        }
-    }
-
-    // builds the query
-    $query = "SELECT a.activityName, a.type, e.date, s.city, s.showroomName FROM event as e , activity as a, showroom as s ";
-    // if there are conditions defined
-    if(count($conditions) > 0) {
-        // append the conditions
-        $query .= "WHERE " . implode (' AND ', $conditions); // you can change to 'OR', but I suggest to apply the filters cumulative
-    }
-
-    $result = mysql_query($query);
-    
-    ---------------------------------------------------------------------------------------------------------------------------------------
 <?php
 $clause = " WHERE ";//Initial clause
 $sql="SELECT a.activityName, a.type, e.date, s.city FROM ticketmanager.event as e 
