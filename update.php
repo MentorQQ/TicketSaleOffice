@@ -15,6 +15,8 @@
       $updateSql = "UPDATE reservation SET ticketNumber='$ticketCount' WHERE ID='$reservationID'";
       mysqli_query($db,$updateSql);
       header("location: profile.php");
-    }
+    } else {
+      header("location: profile.php");
+    }  
   }
  ?>
